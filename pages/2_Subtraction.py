@@ -8,8 +8,13 @@ st.caption("Take away to see what is left.")
 
 with st.sidebar:
     st.header("Choose Numbers")
-    a = st.slider("Start with (A)", 0, 50, 12)
-    b = st.slider("Take away (B)", 0, 50, 4)
+    input_mode = st.radio("Input method", ["Slider", "Type"], horizontal=True)
+    if input_mode == "Slider":
+        a = st.slider("Start with (A)", 0, 50, 12)
+        b = st.slider("Take away (B)", 0, 50, 4)
+    else:
+        a = st.number_input("Start with (A)", min_value=0, max_value=1000, value=12, step=1)
+        b = st.number_input("Take away (B)", min_value=0, max_value=1000, value=4, step=1)
     b = min(b, a)
 
 st.subheader("See what is left")

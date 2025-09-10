@@ -8,8 +8,13 @@ st.caption("Combine two groups to make a bigger group.")
 
 with st.sidebar:
     st.header("Choose Numbers")
-    a = st.slider("First number (A)", 0, 50, 7)
-    b = st.slider("Second number (B)", 0, 50, 5)
+    input_mode = st.radio("Input method", ["Slider", "Type"], horizontal=True)
+    if input_mode == "Slider":
+        a = st.slider("First number (A)", 0, 50, 7)
+        b = st.slider("Second number (B)", 0, 50, 5)
+    else:
+        a = st.number_input("First number (A)", min_value=0, max_value=1000, value=7, step=1)
+        b = st.number_input("Second number (B)", min_value=0, max_value=1000, value=5, step=1)
 
 st.subheader("See the groups")
 st.write("We put A and B together to see the total.")

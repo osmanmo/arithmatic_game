@@ -8,8 +8,13 @@ st.caption("Rows and columns make an array.")
 
 with st.sidebar:
     st.header("Choose Numbers")
-    rows = st.slider("Rows", 1, 12, 3)
-    cols = st.slider("Columns", 1, 12, 4)
+    input_mode = st.radio("Input method", ["Slider", "Type"], horizontal=True)
+    if input_mode == "Slider":
+        rows = st.slider("Rows", 1, 12, 3)
+        cols = st.slider("Columns", 1, 12, 4)
+    else:
+        rows = st.number_input("Rows", min_value=1, max_value=50, value=3, step=1)
+        cols = st.number_input("Columns", min_value=1, max_value=50, value=4, step=1)
     step_fill = st.checkbox("Fill step by step", value=False)
     how_many = st.slider("How many cells filled?", 0, rows*cols, rows*cols) if step_fill else rows*cols
 

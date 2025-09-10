@@ -8,8 +8,13 @@ st.caption("Division is making equal groups.")
 
 with st.sidebar:
     st.header("Choose Numbers")
-    total = st.slider("Total items", 0, 120, 63)
-    group_size = st.slider("Group size (how many in each group)", 1, 12, 9)
+    input_mode = st.radio("Input method", ["Slider", "Type"], horizontal=True)
+    if input_mode == "Slider":
+        total = st.slider("Total items", 0, 120, 63)
+        group_size = st.slider("Group size (how many in each group)", 1, 12, 9)
+    else:
+        total = st.number_input("Total items", min_value=0, max_value=5000, value=63, step=1)
+        group_size = st.number_input("Group size (how many in each group)", min_value=1, max_value=100, value=9, step=1)
     step = st.checkbox("Show groups step-by-step", value=True)
 
 quotient = total // group_size
